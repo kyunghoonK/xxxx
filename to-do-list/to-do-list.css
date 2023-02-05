@@ -11,8 +11,46 @@ body{
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
+.input-area{
+    position: relative;
+}
+
+.task-input{
+    transition: padding-top 0.2s ease, margin-top 0.2s ease;
+    width: 80%;
+    border: none;
+    border: 1px solid blue;
+}
+
+.task-input:focus{
+    outline: none;
+    border-top: none;
+    border-bottom: 3px solid blue;
+    border-left: none;
+    border-right: none;
+    transition: 0.5s;
+    padding-top: 35px;
+}
+.task-input + label > span{
+    font-weight: 300;
+    margin: 0;
+    position: absolute;
+    color: black;
+    font-size: 14px;
+    top: 6px;
+    left: 10px;
+    -webkit-transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+    transition: top 0.2s, font-size 0.2s, color 0.2s ease;
+}
+
+.task-input:focus + label > span{
+    top: 0px;
+    color: blue;
+}
+
 .task-area{
     border : 1px solid lightgray;
+    margin-top: 1em;
 }
 
 .task-tabs{
@@ -26,12 +64,13 @@ body{
 }
 
 #under-line{
-    height: 4px;
     background-color: hotpink;
+    height: 4px;
     position: absolute;
     width: 50px;
     left: 0px;
     top: 52px;
+    transition: 0.5s;
     padding: 0px;
 }
 

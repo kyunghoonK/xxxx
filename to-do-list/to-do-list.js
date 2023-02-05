@@ -10,14 +10,22 @@
 // 끝남탭은, 끝난 아이템만, 진행중탭은 진행중인 아이템만
 // 전체탭을 누르면 다시 전체아이템으로 돌아옴
 
-let taskInput = document.getElementById("task-input");
-let addButton = document.getElementById("add-button");
+let taskInput = document.querySelector(".task-input");
+let addButton = document.querySelector(".add-button");
 let tabs = document.querySelectorAll(".task-tabs div");
+let underLine = document.getElementById("under-line");
 let taskList = [];
 let mode = "all";
 let filterList = [];
 
-addButton.addEventListener("click", addTask);
+addButton.addEventListener("mousedown", addTask);
+
+// 엔터 눌렀을때 실행
+taskInput.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      addTask(event);
+    }
+  });
 
 for(let i=1; i<tabs.length;i++){
     tabs[i].addEventListener("click", function (event) {
@@ -33,6 +41,7 @@ function addTask() {
     };
     taskList.push(task);
     console.log(taskList);
+    taskInput.value = "";
     render();
 }
 
@@ -92,8 +101,14 @@ function deleteTask(id){
 }
 
 function filter(event){
-    mode = event.target.id
-    filterList = []
+    if(event){
+        mode = event.target.id;
+        underLine.style.width = event.target.offsetWidth + "px";
+        underLine.style.left = event.target.offsetLeft + "px";
+        underLine.style.top = event.target.offsetTop + (event.target.offsetHeight - 4) +"px";
+    }
+
+    filterList = [];
     if(mode == "all"){
         render()
     }else if(mode == "ongoing"){
